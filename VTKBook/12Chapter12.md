@@ -926,7 +926,7 @@ These colors are then assigned to the appropriate actors.
   <figcaption style="color:blue"><b>Figure 12-13</b>. A logo created with &#118;tkImplicitModeller.<a href="../../Cxx/Visualization/BlobbyLogo" title="BlobbyLogo"> See BlobbyLogo.cxx</a> and <a href="../../Python/Visualization/BlobbyLogo" title="BlobbyLogo"> BlobbyLogo.py</a>.</figcaption>
 </figure>
 
-``` c+++
+``` c++
 logo->SetProperty(tomato);
 blobbyLogo->SetProperty(banana);
 ```
