@@ -692,8 +692,8 @@ def main():
     renderers.append(bottomRenderer)
 
     # create the outline
-    apf = vtk.vtkAppendPolyData()$\index{vtkAppendPolyData!application}$
-    olf = vtk.vtkOutlineFilter()$\index{vtkOutlineFilter!application}$
+    apf = vtk.vtkAppendPolyData()
+    olf = vtk.vtkOutlineFilter()
     olf.SetInputConnection(apf.GetOutputPort())
     outlineMapper = vtk.vtkPolyDataMapper()
     outlineMapper.SetInputConnection(olf.GetOutputPort())
@@ -740,19 +740,19 @@ def AddStock(renderers, apf, filename, name, zPosition):
     PolyDataRead = vtk.vtkPolyDataReader()
     PolyDataRead.SetFileName(filename)
     PolyDataRead.Update()
-    TubeFilter = vtk.vtkTubeFilter()$\index{vtkTubeFilter!application}$
+    TubeFilter = vtk.vtkTubeFilter()
     TubeFilter.SetInputConnection(PolyDataRead.GetOutputPort())
     TubeFilter.SetNumberOfSides(8)
     TubeFilter.SetRadius(0.5)
     TubeFilter.SetRadiusFactor(10000)
-    Transform = vtk.vtkTransform()$\index{vtkTransform!application}$
+    Transform = vtk.vtkTransform()
     Transform.Translate(0, 0, zPosition)
     Transform.Scale(0.15, 1, 1)
     TransformFilter = vtk.vtkTransformPolyDataFilter()
     TransformFilter.SetInputConnection(TubeFilter.GetOutputPort())
     TransformFilter.SetTransform(Transform)
     # Create the labels.
-    TextSrc = vtk.vtkVectorText()$\index{vtkVectorText!application}$
+    TextSrc = vtk.vtkVectorText()
     TextSrc.SetText(name)
     numberOfPoints = PolyDataRead.GetOutput().GetNumberOfPoints()
     nameIndex = int((numberOfPoints - 1) * 0.8)
@@ -764,7 +764,7 @@ def AddStock(renderers, apf, filename, name, zPosition):
     for r in range(0, len(renderers)):
         LabelMapper = vtk.vtkPolyDataMapper()
         LabelMapper.SetInputConnection(TextSrc.GetOutputPort())
-        LabelActor = vtk.vtkFollower()$\index{vtkFollower!example}$
+        LabelActor = vtk.vtkFollower()
         LabelActor.SetMapper(LabelMapper)
         LabelActor.SetPosition(x, y, z)
         LabelActor.SetScale(2, 2, 2)
