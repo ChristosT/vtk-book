@@ -629,10 +629,10 @@ END {
     print "POINTS " count " float";
     for (i = 1; i <= count; i++) print dates[i] " " prices[i] " 0 ";
     print "\nLINES 1 " (count + 1) " " count;
-    for (i = 0; i \< count; i++) print i;
+    for (i = 0; i < count; i++) print i;
     print "\nPOINT_DATA " count "\nSCALARS volume float";
-    print "LOOKUP\_TABLE default";
-    for (i = 1; i \<= count; i++) print volumes\[i\];
+    print "LOOKUP_TABLE default";
+    for (i = 1; i <= count; i++) print volumes[i];
 }
 ```
 
