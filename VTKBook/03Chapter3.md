@@ -138,7 +138,7 @@ where $R_d$ is the resulting intensity curve due to diffuse lighting, $L_c$ is t
 *Specular* lighting represents direct reflections of a light source off a shiny object. **Figure 3-10** shows a diffusely lit ball with varying specular reflection. The specular intensity (which varies between the top and bottom rows) controls the intensity of the specular lighting. The specular power, *O_{sp}*, indicates how shiny an object is, more specifically it indicates how quickly specular sp reflections diminish as the reflection angles deviate from a perfect reflection. Higher values indicate a faster dropoff, and therefore a shinier surface. Referring to **Figure 3-9**, the equation for specular lighting is
 
 $$
-R_s . = L_cO_s[\overrightarrow{S} \cdot (-\overrightarrow{C}_n)] ^{O_{sp}}\\
+R_s . = L_cO_s[\overrightarrow{S} \cdot (-\overrightarrow{C}_n)] ^{O_{sp}} \notag\\
 \overrightarrow{S} = 2[\overrightarrow{O}_n \cdot (-\overrightarrow{L}_n)]\overrightarrow{O}_n + \overrightarrow{L}_n
 \bf\tag{3-3}
 $$
