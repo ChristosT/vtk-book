@@ -50,7 +50,7 @@ Now let's use CGI and an HTML form to enable the client to change the isosurface
   <figcaption style="color:blue"><b>Figure 11-2</b>. Example HTML form.</figcaption>
 </figure>
 
-``` xml
+``` html
 <HEAD><TITLE>Sample MPEG Animation Page</TITLE></HEAD>
 <FORM METHOD="POST" ACTION="/cgi-bin/makempg.csh">
 
