@@ -17,9 +17,8 @@ $$
 R &=& (1 - A_s) R_b + A_s R_s \\
 G &=& (1 - A_s) G_b + A_s G_s \\
 B &=& (1 - A_s) B_b + A_s B_s \\
-A &=& (1 - A_s) A_b + A_s
+A &=& (1 - A_s) A_b + A_s \bf\tag{7-1}
 \end{eqnarray*}
-\bf\tag{7-1}
 $$
 
 In this equation subscript $s$ refers to the surface of the actor, while subscript $b$ refers to what is behind the actor. The term is called-- the transmissivity, and represents the amount of light that is transmitted through the actor. As an example, consider starting with three polygons colored red, green, and blue each with a transparency of 0.5. If the red polygon is in the front and the background is black, the resulting RGBA color will be (0.4, 0.2, 0.1, 0.875) on a scale from zero to one (**Figure 7-1**).
@@ -271,9 +270,8 @@ $$
 \begin{eqnarray*}
 g_x &=& \frac{f(x + \Delta x, y, z) - f(x - \Delta x, y, z)}{2 \Delta x} \\
 g_y &=& \frac{f(x, y + \Delta y, z) - f(x, y - \Delta y, z)}{2 \Delta y} \\
-g_z &=& \frac{f(x, y, z + \Delta z) - f(x, y, z - \Delta z)}{2 \Delta z}
+g_z &=& \frac{f(x, y, z + \Delta z) - f(x, y, z - \Delta z)}{2 \Delta z} \bf\tag{7-3}
 \end{eqnarray*}
-\bf\tag{7-3}
 $$
 
 where $f(x,y,z)$ represents the scalar value at $(x,y,z)$ location in the dataset according to the interpolation function, and $g_x, g_y$ and $g_z$ are the partial derivatives of this function along the x, y, and z axes respectively. The magnitude of the gradient at $(x,y,z)$ is the length of the resulting vector $(g_x, g_y, g_z)$. This vector can also be normalized to produce a unit normal vector. The  $\Delta x, \Delta y, $ and $\Delta z$ are critical as shown in **Figure 7-19**. If these values are too small, then  the gradient vector field derived from **Equation7-3** may contain high frequencies, yet if these values are too large we will lose small features in the dataset.
@@ -352,9 +350,8 @@ $$
 \begin{eqnarray*}
 \frac{\partial Z}{\partial x} &\simeq& \frac{Z\left(x_p + \Delta x, y_p\right) - Z\left(x_p - \Delta x, y_p\right)}{2 \Delta x} \\
 \frac{\partial Z}{\partial y} &\simeq& \frac{Z\left(x_p, y_p + \Delta y\right) - Z\left(x_p, y_p - \Delta y\right)}{2 \Delta y} \\
-\frac{\partial Z}{\partial z} &\simeq& 1
+\frac{\partial Z}{\partial z} &\simeq& 1 \bf\tag{7-9}
 \end{eqnarray*}
-\bf\tag{7-9}
 $$
 
 <figure id="Figure 7-21">
@@ -551,9 +548,8 @@ $$
 \begin{eqnarray*}
 \vec{f}_\text{new} &=& \left(\vec{f}\cdot \textbf{M}_\text{WD} + \vec{O}_\text{p}\right)\cdot \textbf{M}_\text{DW} \\
 \vec{O}_\text{w} &=& \vec{f}_\text{new} - \vec{f} \\
-\vec{p}_\text{new} &=& \vec{p} + \vec{O}_\text{w}
+\vec{p}_\text{new} &=& \vec{p} + \vec{O}_\text{w} \bf\tag{7-13}
 \end{eqnarray*}
-\bf\tag{7-13}
 $$
 
 <figure id="Figure 7-29">

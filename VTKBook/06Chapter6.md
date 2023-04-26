@@ -580,9 +580,8 @@ $$
 \begin{eqnarray*}
 \frac{\text{d}x}{\text{d}t} &=& \sigma (y - z) \\
 \frac{\text{d}y}{\text{d}t} &=& \rho x - y - x z \\
-\frac{\text{d}z}{\text{d}t} &=& x y - \beta z
+\frac{\text{d}z}{\text{d}t} &=& x y - \beta z \bf\tag{6-16}
 \end{eqnarray*}
-\bf\tag{6-16}
 $$
 
 where $x$ is proportional to the fluid velocity in the fluid ring, $y$ and $z$z measure the fluid temperature in the plane of the ring, the parameters $\sigma$ and $\rho$ are related  to the Prandtl number and Raleigh number, respectively, and $\beta$ is a geometric factor.
