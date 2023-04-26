@@ -127,12 +127,10 @@ To traverse the data along a ray, we could sample the volume at uniform interval
 
 The ray is typically represented in parametric form as
 
-$$
 \begin{equation*}
 \left(x, y, z\right) = \left(x_0, y_0, z_0\right) + \left(a, b, c\right) t
-\end{equation*}
 \bf\tag{7-2}
-$$
+\end{equation*}
 
 where $x_0,y_0,z_0)$ is the origin of the ray (either the camera position for
 perspective viewing transformations or a pixel on the view plane for parallel viewing transformations), and (a, b, c) is the normalized ray direction vector. If t1 and t2 represent the distances where the ray enters and exits the volume respectively, and delta_t indicates the step size, then we can use the following code fragment to perform uniform distance sampling:
@@ -296,50 +294,40 @@ There are several advantages to lighting that can often justify the additional c
 
 To accurately capture lighting effects, we could use a transport theory illumination model <em style="color:green;background-color: white">\[Krueger91\]</em> that describes the intensity of light $I$ arriving at a pixel by the path integral along the ray:
 
-$$
 \begin{equation*}
+\bf\tag{7-4}
 I\left(t_0, \vec{\omega}\right) = \int_{t_0}^{\infty} Q\left(\tau\right) e^{\left(-\int_{t_0}^{t} \sigma_\text{a}\left(\tau\right) + \sigma_\text{sc}\left(\tau\right) \, \text{d} \tau\right)} \, \text{d}\tau
 \end{equation*}
-\bf\tag{7-4}
-$$
 
 If we are using camera clipping planes, then $t_0$ and $\infty$ would be replaced by the distance to the near clip plane $t_{near}$ and the distance to the far clip plane $t_{far}$ respectively. The contribution $Q(t)$ from each sample at a distance $t$ along the ray is attenuated according to how much intensity is lost on the way from $t$ to $t_0$ due to absorption $\sigma_a(t')$ and scattering $\sigma_{sc}(t')$. The contributions at $t$ can be defined as:
 
-$$
 \begin{equation*}
+\bf\tag{7-5}
 Q(t) = E(t) + \sigma_\text{sc}(t) \int_{\Omega} \rho_{sc}(\omega' \to \omega) I(t, \omega') \, \text{d}\omega'
 \end{equation*}
-\bf\tag{7-5}
-$$
 
 The contribution consists of the amount of light directly emitted by the sample $E(t)$, plus the amount of light coming from all directions that is scattered by this sample back along the ray. The fraction of light arriving from the $\vec{\omega'}$ direction that is scattered into the direction $\vec{\omega}$ is defined by the scattering function $\rho_{sc}(\vec{\omega'}\rightarrow \vec{\omega})$. To compute the light arriving from all directions due to multiple bounce scattering, we must recursively compute the illumination function.
 
 If scattering is accurately modelled, then basing the ray function on the transport theory illumination model will produce images with realistic lighting effects. Unfortunately, this illumination model is too complex to evaluate, therefore approximations are necessary for a practical implementation. One of the simplest approximations is to ignore scattering completely, yielding the following intensity equation:
 
-$$
 \begin{equation*}
+\bf\tag{7-6}
 I\left(t_0, \vec{\omega}\right) = \int_{t_0}^{\infty} E\left(\tau\right) e^\left(-\int_{t_0}^{t} \sigma_\text{a}\left(\tau\right) \, \text{d} \tau \right) \, \text{d}\tau
 \end{equation*}
-\bf\tag{7-6}
-$$
 
 We can further simplify this equation by allowing $\alpha (t) to represent both the amount of light emitted per unit length and the amount of light absorbed per unit length along the ray. The outer integral can be replaced by a summation over samples along the ray within some clipping range, while the inner integral can be approximated using an over operator:
 
-$$
 \begin{equation*}
+\bf\tag{7-7}
 I(t_\text{near}, \vec{\omega}) = \sum_{t = t_\text{near}}^{t \leq t_\text{far}} \alpha(t) \prod_{t' = t_\text{near}}^{t' < t_\text{far}}\left(1 - a(t') \right)
 \end{equation*}
-\bf\tag{7-7}
-$$
 
 This equation is typically expressed in its recursive form:
 
-$$
 \begin{equation*}
+\bf\tag{7-8}
 I(t_n, \vec{\omega}) = \alpha(t_n) + \left(1 - \alpha(t_n) \right) I(t_{n + 1}, \vec{\omega})
 \end{equation*}
-\bf\tag{7-8}
-$$
 
 which is equivalent to the simple compositing method using the over operator that was described previously. Clearly in this case we have simplified the illumination model to the point that this ray function does not produce images that appear to be realistic.
 
