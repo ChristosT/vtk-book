@@ -138,9 +138,12 @@ where $R_d$ is the resulting intensity curve due to diffuse lighting, $L_c$ is t
 *Specular* lighting represents direct reflections of a light source off a shiny object. **Figure 3-10** shows a diffusely lit ball with varying specular reflection. The specular intensity (which varies between the top and bottom rows) controls the intensity of the specular lighting. The specular power, *O_{sp}*, indicates how shiny an object is, more specifically it indicates how quickly specular sp reflections diminish as the reflection angles deviate from a perfect reflection. Higher values indicate a faster dropoff, and therefore a shinier surface. Referring to **Figure 3-9**, the equation for specular lighting is
 
 $$
-R_s . = L_cO_s[\overrightarrow{S} \cdot (-\overrightarrow{C}_n)] ^{O_{sp}} \notag\\
+\begin{equation*}\tag{3-3}
+\begin{split}
+R_s . = L_cO_s[\overrightarrow{S} \cdot (-\overrightarrow{C}_n)] ^{O_{sp}} \\
 \overrightarrow{S} = 2[\overrightarrow{O}_n \cdot (-\overrightarrow{L}_n)]\overrightarrow{O}_n + \overrightarrow{L}_n
-\bf\tag{3-3}
+\end{split}
+\end{equation*}
 $$
 
 where $\vec{C_n}$ is the direction of projection for the camera and is the $\vec{S}$ is the direction of specular reflection.
@@ -240,18 +243,23 @@ Using homogeneous coordinates we can represent an infinite point by setting w h 
 For example, suppose we wanted to create a transformation matrix that translates a point $(x, y, z)$ in Cartesian space by the vector $(t_x, t_y, t_z)$. We need only construct the translation matrix given by
 
 $$
+\begin{equation*}\bf\tag{3-6}
+\begin{split}
 T_T = \left[\begin{array}{cccc}
 1 & 0 & 0 & t_x       \\
 0 & 1 & 0 & t_y      \\
 0 & 0 & 1 & t_z      \\
 0 & 0 & 0 & 1
 \end{array}\right]
-\bf\tag{3-6}
+\end{split}
+\end{equation*}
 $$
 
 and then postmultiply it with the homogeneous coordinate $(x_h, y_h, z_h, w_h)$. To carry this example through, we construct the homogeneous coordinate from the Cartesian coordinate $( x, y, z)$ by setting $w_h = 1$ to yield $(x, y, z, 1)$. Then to determine the translated point $(x', y', z')$ we premultiply current position by the transformation matrix $T_T$ to yield the translated coordinate. Substituting into **Equation3-6** we have the result
 
 $$
+\begin{equation*}\bf\tag{3-7}
+\begin{split}
 \left[\begin{array}{c}
 x'      \\
 y'       \\
@@ -269,76 +277,95 @@ y       \\
 z      \\
 1
 \end{array}\right]
-\bf\tag{3-7}
+\end{split}
+\end{equation*}
 $$
 
 Converting back to Cartesian coordinates via **Equation3-5** we have the expected solution
 
 $$
+\begin{equation*}\bf\tag{3-8}
+\begin{split}
 x' = x + t_x \\
 y' = y + t_y \\
 z' = z + t_z
-\bf\tag{3-8}
+\end{split}
+\end{equation*}
 $$
 
 The same procedure is used to scale or rotate an object. To scale an object we use the transformation matrix
 
 $$
+\begin{equation*}\bf\tag{3-9}
+\begin{split}
 T_s = \left[\begin{array}{cccc}
 s_x & 0 & 0 & 0 \\
 0 & s_y & 0 & 0 \\
 0 & 0 & s_z & 0 \\
 0 & 0 & 0 & 1
 \end{array}\right]
-\bf\tag{3-9}
+\end{split}
+\end{equation*}
 $$
 
 where the parameters $s_x, s_y$, and $s_z$ are scale factors along the $x, y, z$ axes. Similaryly we can rotate an object around the $x$ axes by angle $\theta$ using the matrix
 
 $$
+\begin{equation*}\bf\tag{3-10}
+\begin{split}
 T_{R_x} = \left[\begin{array}{cccc}
 1 & 0 & 0 & 0 \\
 0 & \cos\theta & -\sin\theta & 0 \\
 0 & \sin\theta & \cos\theta & 0 \\
 0 & 0 & 0 & 1
 \end{array}\right]
-\bf\tag{3-10}
+\end{split}
+\end{equation*}
 $$
 
 Around the $y$ axis we use
 
 $$
+\begin{equation*}\bf\tag{3-11}
+\begin{split}
 TT_{R_y} = \left[\begin{array}{cccc}
 \cos\theta & 0 & \sin\theta0 & 0 \\
 0 & 1 & 0 & 0 \\
 -\sin\theta & 0 & \cos\theta & 0 \\
 0 & 0 & 0 & 1
 \end{array}\right]
-\bf\tag{3-11}
+\end{split}
+\end{equation*}
 $$
 
 and around the $z$ axis we use
 
 $$
+\begin{equation*}\bf\tag{3-12}
+\begin{split}
 T_{R_z} = \left[\begin{array}{cccc}
 \cos\theta & -\sin\theta & 0 & 0 \\
 \sin\theta & \cos\theta & 0 & 0 \\
 0 & 0 & 0 & 0 \\
 0 & 0 & 0 & 1
 \end{array}\right]
-\bf\tag{3-12}
+\end{split}
+\end{equation*}
 $$
 
 Another useful rotation matrix is used to transform one coordinate axes $x-y-z$ to another coordinate axes $x'-y'-z'$. To derive the transformation matrix we assume that the unit $x'$ axis make the angles $(\theta_{x'x},\theta_{x'y},\theta_{x'z})$ around the $x-y-z$ axes (these are called direction cosines). Similarly, the unit $y'$ axis makes the angles $(\theta_{y'x},\theta_{y'y},\theta_{y'z})$ and the unit $z'$ axis makes the angles $(\theta_{z'x},\theta_{z'y},\theta_{z'z})$. The resulting rotation matrix is formed by placing the direction cosines along the rows of the transformation matrix as follows
 
 $$
+\begin{equation*}\bf\tag{3-13}
+\begin{split}
 T_R = \left[\begin{array}{cccc}
 \cos\theta_{x'x} & \cos\theta_{x'y} & \cos\theta_{x'z} & 0 \\
 \cos\theta_{y'x} & \cos\theta_{y'y} & \cos\theta_{y'z} & 0 \\
 \cos\theta_{z'x} & \cos\theta_{z'y} & \cos\theta_{z'z} & 0 \\
 0 & 0 & 0 & 1
 \end{array}\right]
-\bf\tag{3-13}
+\end{split}
+\end{equation*}
 $$
 
 Rotations occur about the coordinate origin. It is often more convenient to rotate around the center of the object (or a user-specified point). Assume that we call this point the object's center. To rotate around $O_c$ we must first translate the object from $O_c$ to the origin, apply rotations, and then translate the object back to $O_c$.
